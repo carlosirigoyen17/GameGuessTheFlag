@@ -43,7 +43,7 @@ class ViewController: UIViewController {
     button2.setImage(UIImage(named: countries[1]), for: .normal)
     button3.setImage(UIImage(named: countries[2]), for: .normal)
     
-    title = countries[correctAnswer].uppercased()
+    title = "\(countries[correctAnswer].uppercased()) (Score: \(score))"
   }
 
 
@@ -53,7 +53,7 @@ class ViewController: UIViewController {
       score += 1
       title = "Respuesta correcta"
     } else {
-      title = "Respuesta incorrecta"
+      title = "Wrong! That’s the flag of \(countries[sender.tag].uppercased()),"
     }
     print(score)
     let ac = UIAlertController(title: title, message: "Score is \(score)", preferredStyle: .alert)
