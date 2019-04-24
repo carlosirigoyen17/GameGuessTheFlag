@@ -16,6 +16,7 @@ class ViewController: UIViewController {
   var countries = [String]()
   var score = 0
   var correctAnswer = 0
+  var countQuestions = 0
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -49,14 +50,29 @@ class ViewController: UIViewController {
 
   @IBAction func buttonTapped(_ sender: UIButton) {
     var title: String
+    var message: String
+    
     if sender.tag == correctAnswer {
       score += 1
       title = "Respuesta correcta"
+      message = "Score is \(score)"
+      
     } else {
       title = "Wrong! That’s the flag of \(countries[sender.tag].uppercased()),"
+      message = "Score is \(score)"
     }
+    
+    countQuestions += 1
+    if countQuestions == 10 {
+      // Limit
+      title += "\n -- END GAME --"
+      message = "Total Score is \(score) from \(countQuestions)"
+      score = 0
+      countQuestions = 0
+    }
+    
     print(score)
-    let ac = UIAlertController(title: title, message: "Score is \(score)", preferredStyle: .alert)
+    let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
     
     // Al agregar el handle el metodo askQuestion debe recibir un action UIAlertController
     ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
