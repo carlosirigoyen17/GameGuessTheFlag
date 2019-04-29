@@ -32,6 +32,10 @@ class ViewController: UIViewController {
     button2.layer.borderColor = UIColor.lightGray.cgColor
     button3.layer.borderColor = UIColor.lightGray.cgColor
     
+    // Display button on navigationBar for Share Content
+//    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(showTotal))
+    navigationItem.rightBarButtonItem = UIBarButtonItem(title: "🏁", style: .done, target: self, action:  #selector(showTotal))
+    
     askQuestion()
   }
   
@@ -77,8 +81,17 @@ class ViewController: UIViewController {
     // Al agregar el handle el metodo askQuestion debe recibir un action UIAlertController
     ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
     
-    present(ac, animated: true )
+    present(ac, animated: true)
     
+  }
+  
+  @objc func showTotal() {
+    let ac = UIAlertController(title: "Points", message: "Total Score is \(score) from \(countQuestions)", preferredStyle: .alert)
+    
+    // Al agregar el handle el metodo askQuestion debe recibir un action UIAlertController
+    ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: nil))
+    
+    present(ac, animated: true)
   }
 }
 
